@@ -1,0 +1,31 @@
+{
+  "name": "hubot-scfes",
+  "version": "0.0.1",
+  "description": "hubot script for lovelive school idol festival",
+  "main": "./src/hubot-scfes-command.coffee",
+  "author": {
+    "name": "ota42y",
+    "email": "ota42y@gmail(dot)com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "social game",
+    "stamina",
+    "scfes"
+  ],
+  "scripts": {
+    "test": "cake test"
+  },
+  "repository" : {
+    "type" : "git",
+    "url" : "git@github.com:ota42y/hubot-scfes.git"
+  },
+  "dependencies": {
+    "coffee-script": ">= 1.1.0"
+  },
+  "devDependencies": {
+    "chai": "~1.0.3",
+    "mocha": ">= 1.2.1",
+    "sinon": "~1.10.2"
+  }
+}
