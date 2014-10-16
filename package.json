@@ -21,7 +21,8 @@
     "url" : "git@github.com:ota42y/hubot-scfes.git"
   },
   "dependencies": {
-    "coffee-script": ">= 1.1.0"
+    "coffee-script": ">= 1.1.0",
+    "stamina-calculator": ""
   },
   "devDependencies": {
     "chai": "~1.0.3",
