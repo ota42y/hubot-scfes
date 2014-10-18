@@ -26,17 +26,13 @@ class HubotScfes
       return true
     return false
 
-      
+
   # 戻り値とcallbackの引数に次の通知時刻が渡される
   remindMultipleRecoveryTime: (now, max, multiple, callback) ->
     @remindStop()
 
     next_max_times = @getMultipleRecoveryTime(now, max, multiple)
-    response = @remindNextMultipleTime(next_max_times, callback)
-
-    if response != null
-      return @calc.convertToDate(next_max_times)
-    return null
+    return @remindNextMultipleTime(next_max_times, callback)
 
   getMultipleRecoveryTime: (now, max, multiple) ->
     next_max_times = @calc.getMultipleRecoveryTime(now, max, multiple)
