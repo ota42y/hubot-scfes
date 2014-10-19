@@ -51,12 +51,13 @@ class HubotScfes
   remindNextMultipleTime: (next_max_times, callback) ->
     if next_max_times.length != 0
       @remindStop()
-
       next_max_time = next_max_times[0]
       next_max_times.shift()
 
-      @timer = setTimeout(->
-        response = @remindNextMultipleTime(next_max_time, callback)
+      self = this
+
+      @timer = setTimeout( ->
+        response = self.remindNextMultipleTime(next_max_times, callback)
         callback(response)
         return
       , next_max_time)

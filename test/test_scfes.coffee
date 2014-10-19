@@ -40,3 +40,20 @@ describe "scfes test", ->
       )
       expect(next_max_time).to.eql(new Date(15 * 6 * 60 * 1000))
       done()
+
+    it "correct remind", (done) ->
+      count = 0
+
+      clock = @clock
+      @scfes.remindMultipleRecoveryTime(10, 80, 25, (next_max_time) ->
+        count += 1
+        if count == 1
+          clock.tick(25 * 6 * 60)
+        else if count == 2
+          clock.tick(25 * 6 * 60)
+        else if count == 3
+          done()
+        return
+      )
+
+      clock.tick(15 * 6 * 60)
