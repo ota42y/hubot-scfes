@@ -18,9 +18,6 @@ hubot scfes remind stamina 10 50 25
 hubot scfes remind stop
 => 全ての通知を停止する
 
-hubot scfes call ⊂(・8・)⊃＜ﾎﾉｶﾁｬｧｧｧﾝ!
-=> ファイトだよ！
-
 ```
 
 # future task
