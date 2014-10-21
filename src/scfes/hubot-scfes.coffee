@@ -15,7 +15,7 @@ class HubotScfes
     @timer = setTimeout(->
       callback()
       return
-    , next_max_time)
+    , next_max_time * 1000)
 
     return @calc.convertToDate(next_max_time)
 
@@ -60,7 +60,7 @@ class HubotScfes
         response = self.remindNextMultipleTime(next_max_times, callback)
         callback(response)
         return
-      , next_max_time)
+      , next_max_time * 1000)
       return @calc.convertToDate(next_max_time)
 
     return null
