@@ -1,4 +1,4 @@
-HubotScfes = require('./scfes/src/scfes/hubot-scfes.coffee').HubotScfes
+HubotScfes = require('./scfes/hubot-scfes.coffee').HubotScfes
 
 module.exports = (robot) ->
   scfes = new HubotScfes
