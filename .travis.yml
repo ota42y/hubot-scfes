@@ -3,4 +3,4 @@ node_js:
 - '0.10'
 notifications:
   slack:
-    secure: "VlKc86uNlZylAZAmufZhNvUuCB+PCcfXIKSIEod3H5cNaISHN1DAShiBDFy7A3JZp2okkzF3OlqRGV5eZr1YTHN7Bfg4HYBWRk2wH/KgqlynmTfl75Bs50EQxsxu9YgbJmykT9LKNJwQZrriywizE7y5b2qwTLL2TUcRkBTpnl8="
+    secure: RXPfDgok0zXtSKFmQuAwr4QBBqFo0xeRgmHyRFFes5ZeiX+6wjiSZSGveAt+56xq7883kq0Nqa9+VMun4Grjzq8VcCx5qlVVuy5USNXmvZI9hRsOpwnkmMoa6dHeQoa+njTVBOMtvhtfOfRYk3VKbF+N9TDVJC1fyUVshX8kRNU=
