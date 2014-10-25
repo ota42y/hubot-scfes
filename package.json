@@ -1,6 +1,6 @@
 {
   "name": "hubot-scfes",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "hubot script for lovelive school idol festival",
   "main": "./src/hubot-scfes-command.coffee",
   "author": {
