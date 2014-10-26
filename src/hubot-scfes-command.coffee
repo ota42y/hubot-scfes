@@ -2,7 +2,7 @@ HubotScfes = require('./scfes/hubot-scfes.coffee').HubotScfes
 
 module.exports = (robot) ->
   scfes = new HubotScfes
-  robot.respond /scfes remind stamina (\d+) (\d+)^( \d+)/, (msg) ->
+  robot.respond /scfes remind stamina (\d+) (\d+)$/, (msg) ->
     now_stamina = parseInt msg.match[1]
     max_stamina = parseInt msg.match[2]
 
