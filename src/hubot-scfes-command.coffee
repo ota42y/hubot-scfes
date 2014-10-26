@@ -6,8 +6,11 @@ module.exports = (robot) ->
     now_stamina = parseInt msg.match[1]
     max_stamina = parseInt msg.match[2]
 
+    user = msg.message.user.name
+    room = msg.message.user.room
+
     next_date = scfes.remindMaxStamina(now_stamina, max_stamina, ->
-      msg.reply "stamina max"
+      robot.send {room: room}, "#{user}: stamina max"
     )
     msg.reply "registerd " + next_date
 
@@ -20,8 +23,12 @@ module.exports = (robot) ->
   robot.respond /scfes remind stamina (\d+) (\d+) (\d+)/, (msg) ->
     now_stamina = parseInt msg.match[1]
     max_stamina = parseInt msg.match[2]
-    multiple = parseInt msg.match[3]
+    multiple = parseInt msg.match[3]    
+
+    user = msg.message.user.name
+    room = msg.message.user.room
+
     next_date = scfes.remindMultipleRecoveryTime(now_stamina, max_stamina, multiple, ->
-      msg.reply multiple + " stamina gather"
+      robot.send {room: room}, "#{user}: stamina gather"
     )
     msg.reply "registerd " + next_date
