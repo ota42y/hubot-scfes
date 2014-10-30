@@ -69,3 +69,40 @@ describe "scfes test", ->
         return
       )
       clock.tick(15 * 6 * 60 * 1000)
+
+  describe "getNextLevelupTime", ->
+    beforeEach (done) ->
+      @scfes = new HubotScfes
+      @clock = sinon.useFakeTimers(0, "setTimeout", "clearTimeout", "setInterval", "clearInterval", "Date")
+      done()
+
+    describe "correct return date", ->
+      it.skip "expart", (done) ->
+        #e expart is 83 exp
+        date = @scfes.getNextlevelupTime(830 + 50, "ex")
+        expect(date).to.eql(new Date(6 * 60 * 25 * 11))
+        done()
+
+      it.skip "hard", (done) ->
+        # hard is 46 exp
+        date = @scfes.getNextlevelupTime(230, "hard")
+        expect(date).to.eql(new Date(6 * 60 * 15 * 5))
+        done()
+
+      it.skip "normal", (done) ->
+        # normal is 26 exp
+        date = @scfes.getNextlevelupTime(520, "normal")
+        expect(date).to.eql(new Date(6 * 60 * 10 * 20))
+        done()
+
+      it.skip "easy", (done) ->
+        # easy is 12 exp
+        date = @scfes.getNextlevelupTime(24, "easy")
+        expect(date).to.eql(new Date(6 * 60 * 5 * 2))
+        done()
+
+    describe "boundary value", ->
+      it.skip "small value", (done) ->
+        date = @scfes.getNextlevelupTime(1, "hard")
+        expect(date).to.eql(new Date(6 * 60 * 25 * 1))
+        done()
