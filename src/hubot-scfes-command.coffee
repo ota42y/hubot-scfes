@@ -23,7 +23,7 @@ module.exports = (robot) ->
   robot.respond /scfes remind stamina (\d+) (\d+) (\d+)/, (msg) ->
     now_stamina = parseInt msg.match[1]
     max_stamina = parseInt msg.match[2]
-    multiple = parseInt msg.match[3]    
+    multiple = parseInt msg.match[3]
 
     user = msg.message.user.name
     room = msg.message.user.room
@@ -32,3 +32,19 @@ module.exports = (robot) ->
       robot.send {room: room}, "#{user}: stamina gather"
     )
     msg.reply "registerd " + next_date
+
+  robot.respond /scfes levelup time (\d+)( \w+)?/, (msg) ->
+    now_exp = parseInt msg.match[1]
+    difficulty = parseInt msg.match[2]
+    if not difficulty
+      difficulty = "ex"
+
+    msg.reply "next levelup is " + scfes.getNextLevelupTime(now_exp, difficulty)
+
+  robot.respond /scfes levelup count (\d+)( \w+)?/, (msg) ->
+    now_exp = parseInt msg.match[1]
+    difficulty = parseInt msg.match[2]
+    if not difficulty
+      difficulty = "ex"
+
+    msg.reply "next levelup is " + scfes.getNextLevelupCount(now_exp, difficulty)

@@ -79,35 +79,35 @@ describe "scfes test", ->
     describe "correct return date", ->
       it "expart", (done) ->
         #e expart is 83 exp
-        date = @scfes.getNextlevelupTime(830 + 50, "ex")
+        date = @scfes.getNextLevelupTime(830 + 50, "ex")
         expect(date).to.eql(new Date(6 * 60 * 25 * 11 * 1000))
         done()
 
       it "hard", (done) ->
         # hard is 46 exp
-        date = @scfes.getNextlevelupTime(230, "hard")
+        date = @scfes.getNextLevelupTime(230, "hard")
         expect(date).to.eql(new Date(6 * 60 * 15 * 5 * 1000))
         done()
 
       it "normal", (done) ->
         # normal is 26 exp
-        date = @scfes.getNextlevelupTime(520, "normal")
+        date = @scfes.getNextLevelupTime(520, "normal")
         expect(date).to.eql(new Date(6 * 60 * 10 * 20 * 1000))
         done()
 
       it "easy", (done) ->
         # easy is 12 exp
-        date = @scfes.getNextlevelupTime(24, "easy")
+        date = @scfes.getNextLevelupTime(24, "easy")
         expect(date).to.eql(new Date(6 * 60 * 5 * 2 * 1000))
         done()
 
       it "small value", (done) ->
-        date = @scfes.getNextlevelupTime(1, "ex")
+        date = @scfes.getNextLevelupTime(1, "ex")
         expect(date).to.eql(new Date(6 * 60 * 25 * 1 * 1000))
         done()
 
     describe "invalid data", ->
       it "invalid difficulty", (done) ->
-        date = @scfes.getNextlevelupTime(1, "Ho.")
+        date = @scfes.getNextLevelupTime(1, "Ho.")
         expect(date).to.eql(null)
         done()
