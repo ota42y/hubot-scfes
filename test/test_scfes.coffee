@@ -77,37 +77,37 @@ describe "scfes test", ->
       done()
 
     describe "correct return date", ->
-      it.skip "expart", (done) ->
+      it "expart", (done) ->
         #e expart is 83 exp
         date = @scfes.getNextlevelupTime(830 + 50, "ex")
-        expect(date).to.eql(new Date(6 * 60 * 25 * 11))
+        expect(date).to.eql(new Date(6 * 60 * 25 * 11 * 1000))
         done()
 
-      it.skip "hard", (done) ->
+      it "hard", (done) ->
         # hard is 46 exp
         date = @scfes.getNextlevelupTime(230, "hard")
-        expect(date).to.eql(new Date(6 * 60 * 15 * 5))
+        expect(date).to.eql(new Date(6 * 60 * 15 * 5 * 1000))
         done()
 
-      it.skip "normal", (done) ->
+      it "normal", (done) ->
         # normal is 26 exp
         date = @scfes.getNextlevelupTime(520, "normal")
-        expect(date).to.eql(new Date(6 * 60 * 10 * 20))
+        expect(date).to.eql(new Date(6 * 60 * 10 * 20 * 1000))
         done()
 
-      it.skip "easy", (done) ->
+      it "easy", (done) ->
         # easy is 12 exp
         date = @scfes.getNextlevelupTime(24, "easy")
-        expect(date).to.eql(new Date(6 * 60 * 5 * 2))
+        expect(date).to.eql(new Date(6 * 60 * 5 * 2 * 1000))
         done()
 
     describe "boundary value", ->
-      it.skip "small value", (done) ->
-        date = @scfes.getNextlevelupTime(1, "hard")
-        expect(date).to.eql(new Date(6 * 60 * 25 * 1))
+      it "small value", (done) ->
+        date = @scfes.getNextlevelupTime(1, "ex")
+        expect(date).to.eql(new Date(6 * 60 * 25 * 1 * 1000))
         done()
 
-    it.skip "invalid difficulty", (done) ->
+    it "invalid difficulty", (done) ->
       date = @scfes.getNextlevelupTime(1, "Ho.")
       expect(date).to.eql(null)
       done()

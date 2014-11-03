@@ -75,8 +75,23 @@ class HubotScfes
       else null
 
     if get_exp
+      return @calc.getNextLevelupCount(next_exp, get_exp)
+    else
       return null
 
-    return @calc.getNextLevelupCount(next_exp, get_exp) 
+  getNextlevelupTime: (next_exp, difficulty) ->
+    need_stamina = switch difficulty
+      when "ex" then 25
+      when "hard" then 15
+      when "normal" then 10
+      when "easy" then 5
+      else null
+
+    next_levelup_count = @getNextLevelupCount next_exp, difficulty
+    if next_levelup_count && need_stamina
+      return @calc.convertToDate(@calc.getRecoveredTime(next_levelup_count * need_stamina))
+    else
+      return null
+
 
 module.exports.HubotScfes = HubotScfes
