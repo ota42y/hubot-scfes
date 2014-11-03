@@ -79,7 +79,7 @@ class HubotScfes
     else
       return null
 
-  getNextlevelupTime: (next_exp, difficulty) ->
+  getNextLevelupTime: (next_exp, difficulty) ->
     need_stamina = switch difficulty
       when "ex" then 25
       when "hard" then 15
