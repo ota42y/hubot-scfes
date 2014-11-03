@@ -106,3 +106,8 @@ describe "scfes test", ->
         date = @scfes.getNextlevelupTime(1, "hard")
         expect(date).to.eql(new Date(6 * 60 * 25 * 1))
         done()
+
+    it.skip "invalid difficulty", (done) ->
+      date = @scfes.getNextlevelupTime(1, "Ho.")
+      expect(date).to.eql(null)
+      done()

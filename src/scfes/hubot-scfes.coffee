@@ -65,4 +65,18 @@ class HubotScfes
 
     return null
 
+  # 指定した難易度で何回クリアするとレベルアップするかを返す
+  getNextLevelupCount: (next_exp, difficulty) ->
+    get_exp = switch difficulty
+      when "ex" then 83.0
+      when "hard" then 46.0
+      when "normal" then 26.0
+      when "easy" then 12.0
+      else null
+
+    if get_exp
+      return null
+
+    return @calc.getNextLevelupCount(next_exp, get_exp) 
+
 module.exports.HubotScfes = HubotScfes

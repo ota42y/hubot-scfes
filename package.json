@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "coffee-script": ">= 1.1.0",
-    "stamina-calculator": ""
+    "stamina-calculator": ">= 0.0.5"
   },
   "devDependencies": {
     "chai": "~1.0.3",
