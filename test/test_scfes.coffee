@@ -101,13 +101,13 @@ describe "scfes test", ->
         expect(date).to.eql(new Date(6 * 60 * 5 * 2 * 1000))
         done()
 
-    describe "boundary value", ->
       it "small value", (done) ->
         date = @scfes.getNextlevelupTime(1, "ex")
         expect(date).to.eql(new Date(6 * 60 * 25 * 1 * 1000))
         done()
 
-    it "invalid difficulty", (done) ->
-      date = @scfes.getNextlevelupTime(1, "Ho.")
-      expect(date).to.eql(null)
-      done()
+    describe "invalid data", ->
+      it "invalid difficulty", (done) ->
+        date = @scfes.getNextlevelupTime(1, "Ho.")
+        expect(date).to.eql(null)
+        done()
