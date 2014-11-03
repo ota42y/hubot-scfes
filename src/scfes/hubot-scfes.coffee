@@ -65,4 +65,33 @@ class HubotScfes
 
     return null
 
+  # 指定した難易度で何回クリアするとレベルアップするかを返す
+  getNextLevelupCount: (next_exp, difficulty) ->
+    get_exp = switch difficulty
+      when "ex" then 83.0
+      when "hard" then 46.0
+      when "normal" then 26.0
+      when "easy" then 12.0
+      else null
+
+    if get_exp
+      return @calc.getNextLevelupCount(next_exp, get_exp)
+    else
+      return null
+
+  getNextlevelupTime: (next_exp, difficulty) ->
+    need_stamina = switch difficulty
+      when "ex" then 25
+      when "hard" then 15
+      when "normal" then 10
+      when "easy" then 5
+      else null
+
+    next_levelup_count = @getNextLevelupCount next_exp, difficulty
+    if next_levelup_count && need_stamina
+      return @calc.convertToDate(@calc.getRecoveredTime(next_levelup_count * need_stamina))
+    else
+      return null
+
+
 module.exports.HubotScfes = HubotScfes
