@@ -15,7 +15,7 @@ module.exports = (robot) ->
     msg.reply "registerd " + next_date
 
   robot.respond /scfes remind stop/, (msg) ->
-    if scfes.remindStop
+    if scfes.remindStop()
       msg.reply "remind stop"
     else
       msg.reply "remind stop error"
@@ -35,7 +35,7 @@ module.exports = (robot) ->
 
   robot.respond /scfes levelup time (\d+)( \w+)?/, (msg) ->
     now_exp = parseInt msg.match[1]
-    difficulty = parseInt msg.match[2]
+    difficulty = msg.match[2]
     if not difficulty
       difficulty = "ex"
 
@@ -43,7 +43,7 @@ module.exports = (robot) ->
 
   robot.respond /scfes levelup count (\d+)( \w+)?/, (msg) ->
     now_exp = parseInt msg.match[1]
-    difficulty = parseInt msg.match[2]
+    difficulty = msg.match[2]
     if not difficulty
       difficulty = "ex"
 
