@@ -15,7 +15,7 @@ module.exports = (robot) ->
     msg.reply "registerd " + next_date
 
   robot.respond /scfes remind stop/, (msg) ->
-    if scfes.remindStop
+    if scfes.remindStop()
       msg.reply "remind stop"
     else
       msg.reply "remind stop error"
