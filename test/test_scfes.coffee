@@ -25,7 +25,7 @@ describe "scfes test", ->
 
     it "callback", (done) ->
       multiple_recovery_time = @scfes.getMultipleRecoveryTime(10, 80, 25)
-      expect(multiple_recovery_time).to.eql([15*6*60, 25*6*60, 25*6*60])
+      expect(multiple_recovery_time).to.eql([15*6*60, 25*6*60, 25*6*60, 5*6*60])
       done()
 
   describe "remindMultipleRecoveryTime", ->
@@ -37,18 +37,26 @@ describe "scfes test", ->
     it "correct return date", (done) ->
       next_max_time = @scfes.remindMultipleRecoveryTime(10, 80, 25, (next_max_time) ->
         return
+      , ->
+        return
       )
+
       expect(next_max_time).to.eql(new Date(15 * 6 * 60 * 1000))
       done()
 
     it "correct once", (done) ->
       count = 0
+      flag = true
       clock = @clock
       @scfes.remindMultipleRecoveryTime(10, 80, 25, (next_max_time) ->
         count += 1
         return
+      , (next_max_time) ->
+        flag = false
+        return
       )
       clock.tick(40 * 6 * 60 * 1000 - 1)
+      assert.equal flag, true
       if count == 1
         done()
       else
@@ -61,11 +69,17 @@ describe "scfes test", ->
       @scfes.remindMultipleRecoveryTime(10, 80, 25, (next_max_time) ->
         count += 1
         if count == 1
+          expect(next_max_time).to.eql(new Date((15 + 25) * 6 * 60 * 1000))
           clock.tick(25 * 6 * 60 * 1000)
         else if count == 2
+          expect(next_max_time).to.eql(new Date((40 + 25) * 6 * 60 * 1000))
           clock.tick(25 * 6 * 60 * 1000)
         else if count == 3
-          done()
+          expect(next_max_time).to.eql(new Date((65 + 5) * 6 * 60 * 1000))
+          clock.tick(5 * 6 * 60 * 1000)
+        return
+      , ->
+        done()
         return
       )
       clock.tick(15 * 6 * 60 * 1000)
