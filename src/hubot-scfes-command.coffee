@@ -28,8 +28,10 @@ module.exports = (robot) ->
     user = msg.message.user.name
     room = msg.message.user.room
 
-    next_date = scfes.remindMultipleRecoveryTime(now_stamina, max_stamina, multiple, ->
-      robot.send {room: room}, "#{user}: stamina gather"
+    next_date = scfes.remindMultipleRecoveryTime(now_stamina, max_stamina, multiple, (date)->
+      robot.send {room: room}, "#{user}: stamina gather #{date}"
+    , ->
+      robot.send {room: room}, "#{user}: stamina max"
     )
     msg.reply "registerd " + next_date
 
