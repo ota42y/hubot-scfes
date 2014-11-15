@@ -28,14 +28,17 @@ class HubotScfes
 
 
   # 戻り値とcallbackの引数に次の通知時刻が渡される
-  remindMultipleRecoveryTime: (now, max, multiple, callback) ->
+  remindMultipleRecoveryTime: (now, max, multiple, callback, end_callback) ->
     @remindStop()
 
     next_max_times = @getMultipleRecoveryTime(now, max, multiple)
-    return @remindNextMultipleTime(next_max_times, callback)
+    return @remindNextMultipleTime(next_max_times, callback, end_callback)
 
   getMultipleRecoveryTime: (now, max, multiple) ->
     next_max_times = @calc.getMultipleRecoveryTime(now, max, multiple)
+    stamina_max_time = @calc.getNextMaxStaminaTime(now, max)
+    # 最後にmax時の通知をするためにmax時刻を追加する
+    next_max_times.push stamina_max_time
 
     # 直前との差に変更する
     now_time = 0
@@ -48,7 +51,7 @@ class HubotScfes
 
     return next_max_times
 
-  remindNextMultipleTime: (next_max_times, callback) ->
+  remindNextMultipleTime: (next_max_times, callback, end_callback) ->
     if next_max_times.length != 0
       @remindStop()
       next_max_time = next_max_times[0]
@@ -57,8 +60,12 @@ class HubotScfes
       self = this
 
       @timer = setTimeout( ->
-        response = self.remindNextMultipleTime(next_max_times, callback)
-        callback(response)
+        response = self.remindNextMultipleTime(next_max_times, callback, end_callback)
+
+        if response
+          callback(response)
+        else
+          end_callback()
         return
       , next_max_time * 1000)
       return @calc.convertToDate(next_max_time)
