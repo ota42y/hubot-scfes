@@ -28,6 +28,34 @@ describe "scfes test", ->
       expect(multiple_recovery_time).to.eql([15*6*60, 25*6*60, 25*6*60, 5*6*60])
       done()
 
+  describe "getExpFromDifficulty", ->
+    beforeEach (done) ->
+      @scfes = new HubotScfes
+      @clock = sinon.useFakeTimers(0, "setTimeout", "clearTimeout", "setInterval", "clearInterval", "Date")
+      done()
+
+    it.skip "not set is expert", (done) ->
+      assert.equal @scfes.getExpFromDifficulty(), 83.0
+      done()
+
+    it.skip "expert", (done) ->
+      assert.equal @scfes.getExpFromDifficulty("expert"), 83.0
+      done()
+
+    it.skip "hard", (done) ->
+      assert.equal @scfes.getExpFromDifficulty("hard"), 46.0
+      done()
+
+
+    it.skip "normal", (done) ->
+      assert.equal @scfes.getExpFromDifficulty("normal"), 26.0
+      done()
+
+    it.skip "easy", (done) ->
+      assert.equal @scfes.getExpFromDifficulty("easy"), 12.0
+      done()
+
+
   describe "remindMultipleRecoveryTime", ->
     beforeEach (done) ->
       @scfes = new HubotScfes
@@ -91,8 +119,8 @@ describe "scfes test", ->
       done()
 
     describe "correct return date", ->
-      it "expart", (done) ->
-        #e expart is 83 exp
+      it "expert", (done) ->
+        #e expert is 83 exp
         date = @scfes.getNextLevelupTime(830 + 50, "ex")
         expect(date).to.eql(new Date(6 * 60 * 25 * 11 * 1000))
         done()
