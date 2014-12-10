@@ -46,7 +46,5 @@ module.exports = (robot) ->
   robot.respond /scfes levelup count (\d+)( (\w+))?/, (msg) ->
     now_exp = parseInt msg.match[1]
     difficulty = msg.match[3]
-    if not difficulty
-      difficulty = "ex"
 
     msg.reply "next levelup is " + scfes.getNextLevelupCount(now_exp, difficulty)

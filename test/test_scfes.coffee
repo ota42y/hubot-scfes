@@ -34,24 +34,24 @@ describe "scfes test", ->
       @clock = sinon.useFakeTimers(0, "setTimeout", "clearTimeout", "setInterval", "clearInterval", "Date")
       done()
 
-    it.skip "not set is expert", (done) ->
+    it "not set is expert", (done) ->
       assert.equal @scfes.getExpFromDifficulty(), 83.0
       done()
 
-    it.skip "expert", (done) ->
+    it "expert", (done) ->
       assert.equal @scfes.getExpFromDifficulty("expert"), 83.0
       done()
 
-    it.skip "hard", (done) ->
+    it "hard", (done) ->
       assert.equal @scfes.getExpFromDifficulty("hard"), 46.0
       done()
 
 
-    it.skip "normal", (done) ->
+    it "normal", (done) ->
       assert.equal @scfes.getExpFromDifficulty("normal"), 26.0
       done()
 
-    it.skip "easy", (done) ->
+    it "easy", (done) ->
       assert.equal @scfes.getExpFromDifficulty("easy"), 12.0
       done()
 
