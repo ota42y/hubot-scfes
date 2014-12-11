@@ -31,7 +31,6 @@ describe "scfes test", ->
   describe "getExpFromDifficulty", ->
     beforeEach (done) ->
       @scfes = new HubotScfes
-      @clock = sinon.useFakeTimers(0, "setTimeout", "clearTimeout", "setInterval", "clearInterval", "Date")
       done()
 
     it "not set is expert", (done) ->
@@ -46,7 +45,6 @@ describe "scfes test", ->
       assert.equal @scfes.getExpFromDifficulty("hard"), 46.0
       done()
 
-
     it "normal", (done) ->
       assert.equal @scfes.getExpFromDifficulty("normal"), 26.0
       done()
@@ -55,6 +53,45 @@ describe "scfes test", ->
       assert.equal @scfes.getExpFromDifficulty("easy"), 12.0
       done()
 
+
+  describe "getStaminaFromDifficulty", ->
+    beforeEach (done) ->
+      @scfes = new HubotScfes
+      done()
+
+    describe "medley", (done) ->
+      it.skip "expert", (done) ->
+        assert.equal @scfes.getMedleyStaminaFromDifficulty("expert", 3), 60
+        done()
+
+      it.skip "hard", (done) ->
+        assert.equal @scfes.getMedleyStaminaFromDifficulty("hard", 2), 24
+        done()
+
+      it.skip "normal", (done) ->
+        assert.equal @scfes.getMedleyStaminaFromDifficulty("normal", 1), 8
+        done()
+
+      it.skip "easy", (done) ->
+        assert.equal @scfes.getMedleyStaminaFromDifficulty("easy", 1), 4
+        done()
+        
+    describe "not medley", (done)->
+      it.skip "expert", (done) ->
+        assert.equal @scfes.getStaminaFromDifficulty("expert"), 25
+        done()
+
+      it.skip "hard", (done) ->
+        assert.equal @scfes.getStaminaFromDifficulty("hard"), 15
+        done()
+
+      it.skip "normal", (done) ->
+        assert.equal @scfes.getStaminaFromDifficulty("normal"), 10
+        done()
+
+      it.skip "easy", (done) ->
+        assert.equal @scfes.getStaminaFromDifficulty("easy"), 5
+        done()
 
   describe "remindMultipleRecoveryTime", ->
     beforeEach (done) ->
