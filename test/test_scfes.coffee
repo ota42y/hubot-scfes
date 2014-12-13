@@ -77,19 +77,23 @@ describe "scfes test", ->
         done()
         
     describe "not medley", (done)->
-      it.skip "expert", (done) ->
+      it "default is expert", (done) ->
+        assert.equal @scfes.getStaminaFromDifficulty(), 25
+        done()
+
+      it "expert", (done) ->
         assert.equal @scfes.getStaminaFromDifficulty("expert"), 25
         done()
 
-      it.skip "hard", (done) ->
+      it "hard", (done) ->
         assert.equal @scfes.getStaminaFromDifficulty("hard"), 15
         done()
 
-      it.skip "normal", (done) ->
+      it "normal", (done) ->
         assert.equal @scfes.getStaminaFromDifficulty("normal"), 10
         done()
 
-      it.skip "easy", (done) ->
+      it "easy", (done) ->
         assert.equal @scfes.getStaminaFromDifficulty("easy"), 5
         done()
 
@@ -186,7 +190,7 @@ describe "scfes test", ->
         done()
 
     describe "invalid data", ->
-      it "invalid difficulty", (done) ->
+      it "invalid difficulty is expert", (done) ->
         date = @scfes.getNextLevelupTime(1, "Ho.")
-        expect(date).to.eql(null)
+        expect(date).to.eql(new Date(6 * 60 * 25 * 1 * 1000))
         done()

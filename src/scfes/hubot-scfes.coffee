@@ -84,13 +84,16 @@ class HubotScfes
       when "easy" then 12.0
       else 83.0
 
-  getNextLevelupTime: (next_exp, difficulty) ->
-    need_stamina = switch difficulty
+  getStaminaFromDifficulty: (difficulty) ->
+    return switch difficulty
       when "ex" then 25
       when "hard" then 15
       when "normal" then 10
       when "easy" then 5
-      else null
+      else 25
+
+  getNextLevelupTime: (next_exp, difficulty) ->
+    need_stamina = @getStaminaFromDifficulty(difficulty)
 
     next_levelup_count = @getNextLevelupCount next_exp, difficulty
     if next_levelup_count && need_stamina
