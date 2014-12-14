@@ -60,19 +60,23 @@ describe "scfes test", ->
       done()
 
     describe "medley", (done) ->
-      it.skip "expert", (done) ->
+      it "default is expert one time", (done) ->
+        assert.equal @scfes.getMedleyStaminaFromDifficulty(), 20
+        done()
+
+      it "expert", (done) ->
         assert.equal @scfes.getMedleyStaminaFromDifficulty("expert", 3), 60
         done()
 
-      it.skip "hard", (done) ->
+      it "hard", (done) ->
         assert.equal @scfes.getMedleyStaminaFromDifficulty("hard", 2), 24
         done()
 
-      it.skip "normal", (done) ->
+      it "normal", (done) ->
         assert.equal @scfes.getMedleyStaminaFromDifficulty("normal", 1), 8
         done()
 
-      it.skip "easy", (done) ->
+      it "easy", (done) ->
         assert.equal @scfes.getMedleyStaminaFromDifficulty("easy", 1), 4
         done()
         
