@@ -38,10 +38,14 @@ module.exports = (robot) ->
   robot.respond /scfes levelup time (\d+)( (\w+))?/, (msg) ->
     now_exp = parseInt msg.match[1]
     difficulty = msg.match[3]
-    if not difficulty
-      difficulty = "ex"
 
     msg.reply "next levelup is " + scfes.getNextLevelupTime(now_exp, difficulty)
+
+  robot.respond /scfes levelup time medley (\d+)( (\w+))?/, (msg) ->
+    now_exp = parseInt msg.match[1]
+    difficulty = msg.match[3]
+
+    msg.reply "next levelup is " + scfes.getNextLevelupTimeByMedley(now_exp, difficulty)
 
   robot.respond /scfes levelup count (\d+)( (\w+))?/, (msg) ->
     now_exp = parseInt msg.match[1]

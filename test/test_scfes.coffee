@@ -165,8 +165,8 @@ describe "scfes test", ->
 
     describe "correct return date", ->
       it "expert", (done) ->
-        #e expert is 83 exp
-        date = @scfes.getNextLevelupTime(830 + 50, "ex")
+        # expert is 83 exp
+        date = @scfes.getNextLevelupTime(830 + 50, "expert")
         expect(date).to.eql(new Date(6 * 60 * 25 * 11 * 1000))
         done()
 
@@ -189,8 +189,13 @@ describe "scfes test", ->
         done()
 
       it "small value", (done) ->
-        date = @scfes.getNextLevelupTime(1, "ex")
+        date = @scfes.getNextLevelupTime(1, "expert")
         expect(date).to.eql(new Date(6 * 60 * 25 * 1 * 1000))
+        done()
+
+      it "expert", (done) ->
+        date = @scfes.getNextLevelupTimeByMedley(830 + 50, "expert", 3)
+        expect(date).to.eql(new Date(6 * 60 * 20 * 12 * 1000))
         done()
 
     describe "invalid data", ->
