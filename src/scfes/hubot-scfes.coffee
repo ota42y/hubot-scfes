@@ -92,6 +92,16 @@ class HubotScfes
       when "easy" then 5
       else 25
 
+  getMedleyStaminaFromDifficulty: (difficulty, num) ->
+    num = 1 unless num
+
+    return num * switch difficulty
+      when "ex" then 20
+      when "hard" then 12
+      when "normal" then 8
+      when "easy" then 4
+      else 20
+
   getNextLevelupTime: (next_exp, difficulty) ->
     need_stamina = @getStaminaFromDifficulty(difficulty)
 
