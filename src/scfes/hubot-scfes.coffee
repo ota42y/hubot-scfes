@@ -106,21 +106,22 @@ class HubotScfes
 
   getNextLevelupTime: (next_exp, difficulty) ->
     need_stamina = @getStaminaFromDifficulty(difficulty)
-
     next_levelup_count = @getNextLevelupCount next_exp, difficulty
-    if next_levelup_count && need_stamina
-      return @calc.convertToDate(@calc.getRecoveredTime(next_levelup_count * need_stamina))
-    else
-      return null
+
+    @calcStaminaFromPlayTimes(next_levelup_count, need_stamina)
 
   getNextLevelupTimeByMedley: (next_exp, difficulty, times) ->
     need_stamina = @getMedleyStaminaFromDifficulty(difficulty, times)
-
     next_levelup_count = @getNextLevelupCount next_exp, difficulty, times
-    if next_levelup_count && need_stamina
-      return @calc.convertToDate(@calc.getRecoveredTime(next_levelup_count * need_stamina))
+
+    @calcStaminaFromPlayTimes(next_levelup_count, need_stamina)
+
+  calcStaminaFromPlayTimes: (play_times, need_stamina) ->
+    if play_times && need_stamina
+      return @calc.convertToDate(@calc.getRecoveredTime(play_times * need_stamina))
     else
       return null
+
 
 
 module.exports.HubotScfes = HubotScfes
