@@ -73,10 +73,14 @@ class HubotScfes
     return null
 
   # 指定した難易度で何回クリアするとレベルアップするかを返す
-  getNextLevelupCount: (next_exp, difficulty, num) ->
+  getNextLevelupCount: (next_exp, difficulty, num, is_exp_up) ->
+    # 経験値アップアレンジをしていれば1.1倍
+    arrange_rate = 1.0
+    arrange_rate = 1.1 if is_exp_up
+
     # メドレーフェスティバルでも、経験値は変化がない為、かけ算で対応可能
     num = 1 unless num
-    return @calc.getNextLevelupCount(next_exp, @getExpFromDifficulty(difficulty) * num)
+    return @calc.getNextLevelupCount(next_exp, @getExpFromDifficulty(difficulty) * num * arrange_rate)
 
   getExpFromDifficulty: (difficulty) ->
     return switch difficulty
@@ -110,9 +114,9 @@ class HubotScfes
 
     @calcStaminaFromPlayTimes(next_levelup_count, need_stamina)
 
-  getNextLevelupTimeByMedley: (next_exp, difficulty, times) ->
+  getNextLevelupTimeByMedley: (next_exp, difficulty, times, is_exp_up) ->
     need_stamina = @getMedleyStaminaFromDifficulty(difficulty, times)
-    next_levelup_count = @getNextLevelupCount next_exp, difficulty, times
+    next_levelup_count = @getNextLevelupCount next_exp, difficulty, times, is_exp_up
 
     @calcStaminaFromPlayTimes(next_levelup_count, need_stamina)
 

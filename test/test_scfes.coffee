@@ -193,8 +193,13 @@ describe "scfes test", ->
         expect(date).to.eql(new Date(6 * 60 * 25 * 1 * 1000))
         done()
 
-      it "expert", (done) ->
+      it "medley expert", (done) ->
         date = @scfes.getNextLevelupTimeByMedley(830 + 50, "expert", 3)
+        expect(date).to.eql(new Date(6 * 60 * 20 * 12 * 1000))
+        done()
+
+      it "medley expert with exp up", (done) ->
+        date = @scfes.getNextLevelupTimeByMedley(830 + 50, "expert", 3, true)
         expect(date).to.eql(new Date(6 * 60 * 20 * 12 * 1000))
         done()
 
