@@ -78,8 +78,10 @@ class HubotScfes
     arrange_rate = 1.0
     arrange_rate = 1.1 if is_exp_up
 
-    # メドレーフェスティバルでも、経験値は変化がない為、かけ算で対応可能
+    # 指定しなければ1回
+    # メドレーフェスティバルの場合、先に3がデフォルトで入る
     num = 1 unless num
+    # メドレーフェスティバルでも、経験値は変化がない為、かけ算で対応可能
     return @calc.getNextLevelupCount(next_exp, @getExpFromDifficulty(difficulty) * num * arrange_rate)
 
   getExpFromDifficulty: (difficulty) ->
@@ -115,6 +117,8 @@ class HubotScfes
     @calcStaminaFromPlayTimes(next_levelup_count, need_stamina)
 
   getNextLevelupTimeByMedley: (next_exp, difficulty, times, is_exp_up) ->
+    times = 3 unless times
+
     need_stamina = @getMedleyStaminaFromDifficulty(difficulty, times)
     next_levelup_count = @getNextLevelupCount next_exp, difficulty, times, is_exp_up
 
